@@ -16,7 +16,7 @@ def deriv(y, t, N, beta, k, delta):
     dRdt = k * I
     return dSdt, dEdt, dIdt, dRdt
 
-# describe the parameters
+#Parameters
 epsilon = 0.5                       # A number that simulates the effects of safety measures, lockdowns, restrictions etc.
 m = 0.021                           # Mortality rate
 N = 2000                            # Population
