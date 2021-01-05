@@ -4,13 +4,10 @@ Created on Mon Dec 28 09:02:08 2020
 
 @author: forss
 """
-
 from scipy.integrate import odeint
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Let’s run the basic SIR model
-# describe the model
 def deriv(y, t, N, beta, k, delta):
     S, E, I, R = y
     dSdt = -beta * S * I / N
@@ -22,9 +19,9 @@ def deriv(y, t, N, beta, k, delta):
 # describe the parameters
 epsilon = 0.5                       # A number that simulates the effects of safety measures, lockdowns, restrictions etc.
 m = 0.021                           # Mortality rate
-N = 2000                            # population
-beta = 2.5            
-k=1/7                   
+N = 2000                            # Population
+beta = 2.5                          # Number of people infected per infected and per time unit
+k=1/7                               # Amount of people recovered per time unit
 S0, E0, I0, R0 = N-1, 1, 0, 0       # initial conditions: one infected, rest susceptible
 t = np.linspace(0, 99, 100)         # Grid of time points (in days)
 y0 = S0, E0, I0, R0                 # Initial conditions vector
@@ -37,7 +34,7 @@ S, E, I, R = ret.T
 D = R * m
 R = R - D
 
-def plotsir(t, S, E, I, R, D):
+def plotsir(t, S, E, I, R, D):      
   f, ax = plt.subplots(1,1,figsize=(10,4))
   ax.plot(t, S, 'b', alpha=0.7, linewidth=2, label='Susceptible')
   ax.plot(t, E, 'y', alpha=0.7, linewidth=2, label='Exposed')
@@ -59,5 +56,5 @@ def plotsir(t, S, E, I, R, D):
   plt.show();
   
   
-                                  # plot the graph
+                                  # Plot the graph
 plotsir(t, S, E, I, R, D)
