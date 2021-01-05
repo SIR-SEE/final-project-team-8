@@ -31,8 +31,8 @@ delta = 1/5
 ret = odeint(deriv, y0, t, args=(N, beta, k, delta))
 S, E, I, R = ret.T
 
-D = R * m
-R = R - D
+D = R * m                           # Dead people = Recovered people * mortality rate
+R = R - D                           # Number of recovered gets subtracted by the number of dead
 
 def plotsir(t, S, E, I, R, D):      
   f, ax = plt.subplots(1,1,figsize=(10,4))
